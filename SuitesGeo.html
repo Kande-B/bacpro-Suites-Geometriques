@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cours sur les Suites Numériques - Terminale Bac Pro MELEC</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <script>
+        MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            }
+        });
+    </script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 40px;
+            line-height: 1.8;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        h1 {
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            margin-top: 40px;
+            color: #2980b9;
+        }
+        .section {
+            margin-bottom: 50px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .definition {
+            background-color: #e8f4f8;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .quiz {
+            border: 1px solid #3498db;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            background-color: #ecf0f1;
+        }
+        .quiz label {
+            margin: 10px 0;
+            display: block;
+        }
+        .correction {
+            display: none;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .correct { color: #2ecc71; }
+        .incorrect { color: #e74c3c; }
+        .competence {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f1f8ff;
+            border-left: 4px solid #3498db;
+        }
+        iframe {
+            width: 100%;
+            height: 400px;
+            margin: 20px 0;
+            border: none;
+            border-radius: 8px;
+        }
+        button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin舉: 10px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #7f8c8d;
+        }
+        .example {
+            background-color: #f7f7f7;
+            padding: 15px;
+            border-left: 4px solid #2ecc71;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .step-by-step {
+            background-color: #fff8e1;
+            padding: 15px;
+            border-left: 4px solid #ffb300;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+    </style>
+    <script>
+        function checkQuiz(quizId, correctAnswer, correctionId, explanation) {
+            const selected = document.querySelector(`input[name="${quizId}"]:checked`);
+            const correction = document.getElementById(correctionId);
+            if (selected) {
+                if (selected.value === correctAnswer) {
+                    correction.innerHTML = "Bonne réponse ! " + explanation;
+                    correction.className = "correction correct";
+                } else {
+                    correction.innerHTML = "Mauvaise réponse. Correction : " + explanation;
+                    correction.className = "correction incorrect";
+                }
+                correction.style.display = "block";
+            } else {
+                correction.innerHTML = "Veuillez sélectionner une réponse.";
+                correction.className = "correction incorrect";
+                correction.style.display = "block";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Cours sur les Suites Numériques - Terminale Bac Pro MELEC</h1>
+    <p>Ce cours est conçu pour les élèves de Terminale Bac Pro MELEC, suivant le programme officiel de mathématiques pour la voie professionnelle (Ministère de l’Éducation nationale, Annexe 2). Il met l’accent sur les <strong>suites géométriques</strong>, avec un rappel des suites arithmétiques. Vous trouverez des définitions précises, des explications détaillées sur l’impact du choix de l’indice initial (0, 1, ou un rang \( p \)), des exemples concrets, une vidéo pédagogique, des quizzes interactifs, et une auto-évaluation des compétences.</p>
+    <div class="section">
+        <h2>1. Introduction aux Suites Numériques</h2>
+        <div class="definition">
+            <p><strong>Définition :</strong> Une <strong>suite numérique</strong> est une liste ordonnée de nombres, appelés termes, notée \( (u_n) \), où chaque terme \( u_n \) est associé à un indice \( n \) (entier naturel, souvent \( n = 0, 1, 2, \ldots \) ou \( n = 1, 2, \ldots \)). Une suite peut être définie par une relation de récurrence ou une formule explicite.</p>
+        </div>
+        <p>En Terminale Bac Pro MELEC, nous étudions principalement les <strong>suites géométriques</strong> avec une raison positive (\( q > 0 \)), tout en revisitant les suites arithmétiques. Le choix de l’indice initial (0, 1, ou \( p \)) affecte les formules, comme expliqué ci-dessous.</p>
+        <p><strong>Applications concrètes :</strong></p>
+        <ul>
+            <li><strong>Intérêts composés :</strong> Calcul de l’évolution d’un capital.</li>
+            <li><strong>Amortissement d’emprunts :</strong> Planification des remboursements.</li>
+            <li><strong>Modélisation électrique :</strong> Analyse de phénomènes à croissance ou décroissance exponentielle.</li>
+        </ul>
+    </div>
+    <div class="section">
+        <h2>2. Rappel : Suites Arithmétiques</h2>
+        <div class="definition">
+            <p><strong>Définition :</strong> Une <strong>suite arithmétique</strong> est une suite où chaque terme est obtenu en ajoutant une constante, appelée <strong>raison</strong> (\( r \)), au terme précédent. Formellement : \( u_{n+1} = u_n + r \).</p>
+        </div>
+        <p><strong>Propriétés clés :</strong></p>
+        <ul>
+            <li><strong>Sens de variation :</strong> Croissante si \( r > 0 \), décroissante si \( r < 0 \), constante si \( r = 0 \).</li>
+        </ul>
+        <p><strong>Formules selon l’indice initial :</strong></p>
+        <div class="step-by-step">
+            <p><strong>Indice commençant à \( n = 1 \) :</strong></p>
+            <ul>
+                <li><strong>Terme général :</strong> \( u_n = u_1 + (n-1) \cdot r \).</li>
+                <li><strong>Somme des \( n \) premiers termes :</strong> \( S_n = \frac{n}{2} \cdot (u_1 + u_n) \) ou \( S_n = \frac{n}{2} \cdot [2u_1 + (n-1) \cdot r] \).</li>
+                <li><strong>Explication :</strong> Si \( u_1 \) est le premier terme, alors \( u_2 = u_1 + r \), \( u_3 = u_1 + 2r \), etc. La différence \( n-1 \) reflète le nombre d’ajouts de \( r \) depuis le premier terme.</li>
+            </ul>
+            <p><strong>Indice commençant à \( n = 0 \) :</strong></p>
+            <ul>
+                <li><strong>Terme général :</strong> \( u_n = u_0 + n \cdot r \).</li>
+                <li><strong>Somme des \( n+1 \) premiers termes :</strong> \( S_n = \frac{n+1}{2} \cdot (u_0 + u_n) \).</li>
+                <li><strong>Explication :</strong> Avec \( u_0 \) comme premier terme, \( u_1 = u_0 + r \), \( u_2 = u_0 + 2r \), etc. Le terme général utilise \( n \) directement car l’indice commence à 0.</li>
+            </ul>
+            <p><strong>Indice commençant à \( n = p \) :</strong></p>
+            <ul>
+                <li><strong>Terme général :</strong> \( u_n = u_p + (n-p) \cdot r \).</li>
+                <li><strong>Somme des termes de \( p \) à \( n \) :</strong> \( S_{p,n} = \frac{n-p+1}{2} \cdot (u_p + u_n) \).</li>
+                <li><strong>Explication :</strong> Si la suite commence à \( u_p \), le terme général ajuste l’indice par \( n-p \), représentant le nombre d’ajouts de \( r \) depuis \( u_p \).</li>
+            </ul>
+        </div>
+        <div class="example">
+            <p><strong>Exemple :</strong> Soit une suite arithmétique avec \( u_1 = 3 \), \( r = 4 \), puis avec \( u_0 = 3 \), et enfin avec \( u_5 = 3 \).</p>
+            <ul>
+                <li><strong>Pour \( n = 1 \) :</strong> \( u_n = 3 + (n-1) \cdot 4 \). Alors \( u_5 = 3 + (5-1) \cdot 4 = 19 \).</li>
+                <li><strong>Pour \( n = 0 \) :</strong> \( u_n = 3 + n \cdot 4 \). Alors \( u_5 = 3 + 5 \cdot 4 = 23 \).</li>
+                <li><strong>Pour \( n = 5 \) :</strong> \( u_n = 3 + (n-5) \cdot 4 \). Alors \( u_7 = 3 + (7-5) \cdot 4 = 11 \).</li>
+                <li><strong>Somme pour \( n = 1 \) à 5 :</strong> \( S_5 = \frac{5}{2} \cdot (3 + 19) = 55 \).</li>
+            </ul>
+        </div>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/0LC-dfM-vs8?si=lDDbh4G_sf9pcH_v" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <div class="section">
+        <h2>3. Suites Géométriques</h2>
+        <div class="definition">
+            <p><strong>Définition :</strong> Une <strong>suite géométrique</strong> est une suite où chaque terme est obtenu en multipliant le terme précédent par une constante, appelée <strong>raison</strong> (\( q \)), avec \( q > 0 \). Formellement : \( u_{n+1} = u_n \cdot q \).</p>
+        </div>
+        <p><strong>Propriétés clés :</strong></p>
+        <ul>
+            <li><strong>Sens de variation :</strong> Croissante si \( q > 1 \), décroissante si \( 0 < q < 1 \), constante si \( q = 1 \) (et \( u_1 \neq 0 \)).</li>
+            <li><strong>Représentation graphique :</strong> Les points \( (n, u_n) \) forment un nuage à allure exponentielle.</li>
+        </ul>
+        <p><strong>Formules selon l’indice initial :</strong></p>
+        <div class="step-by-step">
+            <p><strong>Indice commençant à \( n = 1 \) :</strong></p>
+            <ul>
+                <li><strong>Terme général :</strong> \( u_n = u_1 \cdot q^{n-1} \).</li>
+                <li><strong>Somme des \( n \) premiers termes :</strong> \( S_n = u_1 \cdot \frac{1 - q^n}{1 - q} \) (pour \( q \neq 1 \)).</li>
+                <li><strong>Explication :</strong> Si \( u_1 \) est le premier terme, alors \( u_2 = u_1 \cdot q \), \( u_3 = u_1 \cdot q^2 \), etc. L’exposant \( n-1 \) compte le nombre de multiplications par \( q \).</li>
+            </ul>
+            <p><strong>Indice commençant à \( n = 0 \) :</strong></p>
+            <ul>
+                <li><strong>Terme général :</strong> \( u_n = u_0 \cdot q^n \).</li>
+                <li><strong>Somme des \( n+1 \) premiers termes :</strong> \( S_n = u_0 \cdot \frac{1 - q^{n+1}}{1 - q} \) (pour \( q \neq 1 \)).</li>
+                <li><strong>Explication :</strong> Avec \( u_0 \) comme premier terme, \( u_1 = u_0 \cdot q \), \( u_2 = u_0 \cdot q^2 \), etc. L’exposant \( n \) reflète directement le nombre de multiplications.</li>
+            </ul>
+            <p><strong>Indice commençant à \( n = p \) :</strong></p>
+            <ul>
+                <li><strong>Terme général :</strong> \( u_n = u_p \cdot q^{n-p} \).</li>
+                <li><strong>Somme des termes de \( p \) à \( n \) :</strong> \( S_{p,n} = u_p \cdot \frac{1 - q^{n-p+1}}{1 - q} \) (pour \( q \neq 1 \)).</li>
+                <li><strong>Explication :</strong> Si la suite commence à \( u_p \), l’exposant \( n-p \) ajuste le nombre de multiplications par \( q \).</li>
+            </ul>
+        </div>
+        <div class="example">
+            <p><strong>Exemple :</strong> Soit une suite géométrique avec \( u_1 = 2 \), \( q = 3 \), puis avec \( u_0 = 2 \), et enfin avec \( u_5 = 2 \).</p>
+            <ul>
+                <li><strong>Pour \( n = 1 \) :</strong> \( u_n = 2 \cdot 3^{n-1} \). Alors \( u_5 = 2 \cdot 3^4 = 2 \cdot 81 = 162 \).</li>
+                <li><strong>Pour \( n = 0 \) :</strong> \( u_n = 2 \cdot 3^n \). Alors \( u_5 = 2 \cdot 3^5 = 2 \cdot 243 = 486 \).</li>
+                <li><strong>Pour \( n = 5 \) :</strong> \( u_n = 2 \cdot 3^{n-5} \). Alors \( u_7 = 2 \cdot 3^{7-5} = 2 \cdot 9 = 18 \).</li>
+                <li><strong>Somme pour \( n = 1 \) à 3 :</strong> \( S_3 = 2 \cdot \frac{1 - 3^3}{1 - 3} = 2 \cdot \frac{1 - 27}{-2} = 26 \).</li>
+            </ul>
+        </div>
+        <p><strong>Lien avec les fonctions exponentielles :</strong> Une suite géométrique peut être exprimée comme \( u_n = u_1 \cdot e^{(n-1) \cdot \ln q} \) (ou \( u_0 \cdot e^{n \cdot \ln q} \) pour \( n = 0 \)), reliant la suite à une croissance exponentielle.</p>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/0LC-dfM-vs8?si=lDDbh4G_sf9pcH_v" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <div class="section">
+        <h2>4. Applications Pratiques</h2>
+        <p>Les suites géométriques modélisent des phénomènes à croissance ou décroissance exponentielle :</p>
+        <ul>
+            <li><strong>Intérêts composés :</strong> Capital \( C_n = C_0 \cdot (1 + \frac{t}{100})^n \).</li>
+            <li><strong>Amortissement :</strong> Remboursement d’un prêt par annuités constantes.</li>
+            <li><strong>Tableur :</strong> Calcul et visualisation des suites via Excel.</li>
+        </ul>
+        <div class="example">
+            <p><strong>Exemple :</strong> Un capital de 2000 € à 4% par an, indice à \( n = 0 \).</p>
+            <div class="step-by-step">
+                <p><strong>Étape 1 :</strong> Formule : \( C_n = C_0 \cdot (1 + \frac{t}{100})^n \).</p>
+                <p><strong>Étape 2 :</strong> \( C_3 = 2000 \cdot 1.04^3 \approx 2000 \cdot 1.124864 \approx 2249.73 \, € \).</p>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <h2>5. Quizzes</h2>
+        <div class="quiz">
+            <h3>Question 1 : Quelle est la formule du terme général d’une suite géométrique commençant à \( n = 1 \) ?</h3>
+            <label><input type="radio" name="q1" value="u_n = u_1 + (n-1)q"> \( u_n = u_1 + (n-1) \cdot q \)</label>
+            <label><input type="radio" name="q1" value="u_n = u_1 * q^{n-1}"> \( u_n = u_1 \cdot q^{n-1} \)</label>
+            <button onclick="checkQuiz('q1', 'u_n = u_1 * q^{n-1}', 'corr1', 'La formule \( u_n = u_1 \cdot q^{n-1} \) est correcte, car chaque terme est obtenu en multipliant \( u_1 \) par \( q \) \( (n-1) \) fois.')">Vérifier</button>
+            <p id="corr1" class="correction"></p>
+        </div>
+        <div class="quiz">
+            <h3>Question 2 : Une suite géométrique a \( q = 0.8 \), \( u_0 = 50 \). Quel est le sens de variation ?</h3>
+            <label><input type="radio" name="q2" value="Croissante"> Croissante</label>
+            <label><input type="radio" name="q2" value="Décroissante"> Décroissante</label>
+            <button onclick="checkQuiz('q2', 'Décroissante', 'corr2', 'Puisque \( 0 < q = 0.8 < 1 \), la suite est décroissante.')">Vérifier</button>
+            <p id="corr2" class="correction"></p>
+        </div>
+        <div class="quiz">
+            <h3>Question 3 : Calculez \( S_4 \) pour une suite géométrique avec \( u_0 = 1 \), \( q = 2 \).</h3>
+            <label><input type="radio" name="q3" value="10"> 10</label>
+            <label><input type="radio" name="q3" value="15"> 15</label>
+            <label><input type="radio" name="q3" value="31"> 31</label>
+            <button onclick="checkQuiz('q3', '31', 'corr3', 'S_4 = 1 \cdot \frac{1 - 2^{4+1}}{1 - 2} = 1 \cdot \frac{1 - 32}{-1} = 31.')">Vérifier</button>
+            <p id="corr3" class="correction"></p>
+        </div>
+    </div>
+    <div class="section">
+        <h2>6. Auto-Évaluation des Compétences</h2>
+        <p>Évaluate vos compétences en cochant les cases :</p>
+        <div class="competence"><input type="checkbox"> Calculer un terme de rang donné d’une suite géométrique.</div>
+        <div class="competence"><input type="checkbox"> Déterminer le sens de variation d’une suite géométrique.</div>
+        <div class="competence"><input type="checkbox"> Calculer la somme des n premiers termes d’une suite géométrique.</div>
+        <div class="competence"><input type="checkbox"> Réaliser une représentation graphique d’une suite géométrique.</div>
+        <div class="competence"><input type="checkbox"> Utiliser un tableur pour explorer des suites.</div>
+    </div>
+    <footer>
+        <p>Références : Programme officiel du Ministère de l’Éducation nationale. Vidéo pédagogique sélectionnée pour sa clarté.</p>
+    </footer>
+</body>
+</html>
